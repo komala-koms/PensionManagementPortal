@@ -26,7 +26,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 	@Override
 	protected ResponseEntity<Object> handleHttpMediaTypeNotSupported(HttpMediaTypeNotSupportedException ex, HttpHeaders headers, HttpStatus status, WebRequest req){
-		log.info("In Exception ResponseEntity");
+		log.info("In Exception ResponseEntity 31");
 		String msg = ex.getMessage()+" only JSON Supported";
 		ExceptionMessage exceptionMessage = new ExceptionMessage(new Date(),msg, req.getDescription(false),((ServletWebRequest) req).getRequest().getServletPath());
 		return new ResponseEntity<>(exceptionMessage, HttpStatus.UNSUPPORTED_MEDIA_TYPE);
@@ -34,14 +34,14 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler(PensionerDetailNotMatchingException.class)
 	public final ResponseEntity<Object> toHandlePensionerDetailNotMatchingException(Exception ex, WebRequest req){
-		log.info("In Exception ResponseEntity");
+		log.info("In Exception ResponseEntity 32");
 		ExceptionMessage exceptionMessage = new ExceptionMessage(new Date(),ex.getMessage(), ex.getClass().getCanonicalName(),((ServletWebRequest) req).getRequest().getServletPath());
 		return new ResponseEntity<>(exceptionMessage, HttpStatus.NOT_ACCEPTABLE);
 	}
 
 	@ExceptionHandler(PensionerDetailsInvalidParameters.class)
 	public final ResponseEntity<Object> toHandlePensionerDetailsInvalidParameters(Exception ex, WebRequest req){
-		log.info("In Exception ResponseEntity");
+		log.info("In Exception ResponseEntity 33");
 		ExceptionMessage exceptionMessage = new ExceptionMessage(new Date(),ex.getMessage(), ex.getClass().getCanonicalName(),((ServletWebRequest) req).getRequest().getServletPath());
 		return new ResponseEntity<>(exceptionMessage, HttpStatus.NOT_ACCEPTABLE);
 	}
@@ -49,7 +49,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler(PensionerDetailsExceptionFeign.class)
 	public final ResponseEntity<Object> toHandlePensionerDetailsExceptionFeign(Exception ex, WebRequest req){
-		log.info("In Exception ResponseEntity");
+		log.info("In Exception ResponseEntity 34");
 		ExceptionMessage exceptionMessage = new ExceptionMessage(new Date(),ex.getMessage(), ex.getClass().getCanonicalName(),((ServletWebRequest) req).getRequest().getServletPath());
 		return new ResponseEntity<>(exceptionMessage, HttpStatus.BAD_REQUEST);
 	}  

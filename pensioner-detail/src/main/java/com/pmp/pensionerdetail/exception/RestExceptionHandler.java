@@ -25,7 +25,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 	@Override
 	protected ResponseEntity<Object> handleHttpMediaTypeNotSupported(HttpMediaTypeNotSupportedException ex, HttpHeaders headers, HttpStatus status, WebRequest req){
-		log.info("In Exception ResponseEntity");
+		log.info("In Exception ResponseEntity 1");
 		String msg = ex.getMessage()+" only JSON Supported";
 		ExceptionMessage exceptionMessage = new ExceptionMessage(new Date(),msg, req.getDescription(false),((ServletWebRequest) req).getRequest().getServletPath());
 		return new ResponseEntity<>(exceptionMessage, HttpStatus.UNSUPPORTED_MEDIA_TYPE);
@@ -33,21 +33,21 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler(PensionerDetailsNotFoundException.class)
 	public final ResponseEntity<Object> toHandlePensionerDetailsNotFoundException(Exception ex, WebRequest req){
-		log.info("In Exception ResponseEntity");
+		log.info("In Exception ResponseEntity 2");
 		ExceptionMessage exceptionMessage = new ExceptionMessage(new Date(),ex.getMessage(), ex.getClass().getCanonicalName(),((ServletWebRequest) req).getRequest().getServletPath());
 		return new ResponseEntity<>(exceptionMessage, HttpStatus.NOT_FOUND);
 	}
 
 	@ExceptionHandler(PensionerDetailsInvalidParametersException.class)
 	public final ResponseEntity<Object> toHandlePensionerDetailsInvalidParameters(Exception ex, WebRequest req){
-		log.info("In Exception ResponseEntity");
+		log.info("In Exception ResponseEntity 3");
 		ExceptionMessage exceptionMessage = new ExceptionMessage(new Date(),ex.getMessage(), ex.getClass().getCanonicalName(),((ServletWebRequest) req).getRequest().getServletPath());
 		return new ResponseEntity<>(exceptionMessage, HttpStatus.NOT_ACCEPTABLE);
 	}
 	
 	@ExceptionHandler(PensionerDetailsAlreadyFoundException.class)
 	public final ResponseEntity<Object> toHandlePensionerDetailsAlreadyFoundException(Exception ex, WebRequest req){
-		log.info("In Exception ResponseEntity");
+		log.info("In Exception ResponseEntity 4");
 		ExceptionMessage exceptionMessage = new ExceptionMessage(new Date(),ex.getMessage(), ex.getClass().getCanonicalName(),((ServletWebRequest) req).getRequest().getServletPath());
 		return new ResponseEntity<>(exceptionMessage, HttpStatus.NOT_ACCEPTABLE);
 	}

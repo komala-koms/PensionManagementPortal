@@ -68,7 +68,7 @@ public class PensionerDetailsServiceImpl implements PensionerDetailsService{
 		
 		if(!localdate.isBefore(dt))
 			throw new PensionerDetailsInvalidParameters("Entered value is not valid type - dob");
-		if (!((Object)pensioner.getAadhar()).getClass().getSimpleName().equals("Long")) 
+/*		if (!((Object)pensioner.getAadhar()).getClass().getSimpleName().equals("Long")) 
 			throw new PensionerDetailsInvalidParameters("Entered value is not valid type - aadhar");
 		if(!((Object)pensioner.getAllowances()).getClass().getSimpleName().equals("Long")) 
 			throw new PensionerDetailsInvalidParameters("Entered value is not valid type - allowances ");
@@ -83,7 +83,7 @@ public class PensionerDetailsServiceImpl implements PensionerDetailsService{
 		if(!((Object)pensioner.getSalaryearned()).getClass().getSimpleName().equals("Long")) 
 			throw new PensionerDetailsInvalidParameters("Entered value is not valid type - salary");
 		if(!((Object)pensioner.isTypepubpri()).getClass().getSimpleName().equals("Boolean")) 
-			throw new PensionerDetailsInvalidParameters("Entered value is not valid type - boolean");
+			throw new PensionerDetailsInvalidParameters("Entered value is not valid type - boolean");*/
 		
 		return true;
 		

@@ -1,12 +1,12 @@
 version: '2'
 services:
     eureka-server:
-        image:  komaladunna/pmp-server
+        build: pmp-server
         ports:
             -   8761:8761
 
     api-gateway-server:
-        image:  komaladunna/pmp-gateway
+        build: pmp-gateway
         ports:
             -   8765:8765
         depends_on:
@@ -15,7 +15,7 @@ services:
             eureka.client.serviceUrl.defaultZone: http://eureka-server:8761/eureka
 
     auth-server:
-        image: komaladunna/pensioner-auth
+        build: pensioner-auth
         ports:
             -   8080:8080
         depends_on:
@@ -25,7 +25,7 @@ services:
             eureka.client.serviceUrl.defaultZone: http://eureka-server:8761/eureka
 
     process-pension-server:
-        image: komaladunna/process-pension
+        build: process-pension
         ports:
             -   8100:8100
         depends_on:
@@ -36,7 +36,7 @@ services:
             eureka.client.serviceUrl.defaultZone: http://eureka-server:8761/eureka
 
     pensioner-details-server:
-        image: komaladunna/pensioner-detail
+        build: pensioner-detail
         ports:
             -   8000:8000
         depends_on:

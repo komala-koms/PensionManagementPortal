@@ -11,6 +11,7 @@ import com.pmp.pensionerdetail.service.PensionerDetailServices;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -22,6 +23,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -59,13 +61,18 @@ public class PensionerDetailController {
 		headers.add("responded","pensioner-details");
 		
 		if(results.hasErrors()) {
-			log.debug("inside pensionerDetail - add Pensioner details - hasError");
-			throw new PensionerDetailsInvalidParametersException("Entered invalid parameters");
+			log.error("inside pensionerDetail - add Pensioner details - hasError");
+			List<ObjectError> errors = (results.getAllErrors());
+			for(ObjectError i:errors)
+			{
+				log.error(i.toString());
+			}
+			throw new PensionerDetailsInvalidParametersException(results.toString());
 		}
 		
 		Map<String, Object> response = new HashMap<String, Object>();
 		response.put("msg", service.addPensionerDetailsinRepo(pensionerDetails));
-		
+		log.info("hii");
 		return new ResponseEntity<Object>(response,headers,HttpStatus.CREATED);
 	}
 	
