@@ -3,10 +3,11 @@ version: 0.2
 phases:
   pre_build:
     commands:
+      - mvn clean package
       - echo Logging in to Amazon ECR...
       - aws --version
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 012345678910.dkr.ecr.us-west-2.amazonaws.com
-      - REPOSITORY_URI=860061945305.dkr.ecr.ap-south-1.amazonaws.com/komala-pension-management-portal:pensioner-auth
+      - REPOSITORY_URI=860061945305.dkr.ecr.ap-south-1.amazonaws.com/komala-pensioner-auth
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
   build:
@@ -24,4 +25,6 @@ phases:
       - echo Writing image definitions file...
       - printf '[{"name":"pensioner-auth","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 artifacts:
-    files: imagedefinitions.json
+    files: 
+      - imagedefinitions.json
+      - target/pmp-auth-server-executable.jar
