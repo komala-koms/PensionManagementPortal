@@ -13,15 +13,15 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - cd pensioner-auth
-      - docker build -t pensioner-auth .
-      - docker tag pensioner-auth 860061945305.dkr.ecr.ap-south-1.amazonaws.com/komala-pension-management-portal:pensioner-auth
+      - cd pmp
+      - docker build -t pmp-server .
+      - docker tag pmp-server 860061945305.dkr.ecr.ap-south-1.amazonaws.com/komala-pension-management-portal:pmp
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - docker push 860061945305.dkr.ecr.ap-south-1.amazonaws.com/komala-pension-management-portal:pensioner-auth
+      - docker push 860061945305.dkr.ecr.ap-south-1.amazonaws.com/komala-pension-management-portal:pmp
       - echo Writing image definitions file...
-      - printf '[{"name":"pensioner-auth","imageUri":"%s"}]' 860061945305.dkr.ecr.ap-south-1.amazonaws.com/komala-pension-management-portal:pensioner-auth > imagedefinitions.json
+      - printf '[{"name":"pmp-server","imageUri":"%s"}]' 860061945305.dkr.ecr.ap-south-1.amazonaws.com/komala-pension-management-portal:pmp > imagedefinitions.json
 artifacts:
-    files: pensioner-auth/imagedefinitions.json
+    files: pmp/imagedefinitions.json
