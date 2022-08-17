@@ -15,13 +15,13 @@ phases:
       - echo Building the Docker image...
       - cd pmp
       - docker build -t pmp-server .
-      - docker tag pmp-server 860061945305.dkr.ecr.ap-south-1.amazonaws.com/komala-pension-management-portal:pmp
+      - docker tag pmp-server 860061945305.dkr.ecr.ap-south-1.amazonaws.com/komala-pension-management-portal:pmp-server
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - docker push 860061945305.dkr.ecr.ap-south-1.amazonaws.com/komala-pension-management-portal:pmp
+      - docker push 860061945305.dkr.ecr.ap-south-1.amazonaws.com/komala-pension-management-portal:pmp-server
       - echo Writing image definitions file...
-      - printf '[{"name":"pmp-server","imageUri":"%s"}]' 860061945305.dkr.ecr.ap-south-1.amazonaws.com/komala-pension-management-portal:pmp > imagedefinitions.json
+      - printf '[{"name":"pmp-server","imageUri":"%s"}]' 860061945305.dkr.ecr.ap-south-1.amazonaws.com/komala-pension-management-portal:pmp-server > imagedefinitions.json
 artifacts:
-    files: pmp/imagedefinitions.json
+    files: pmp-server/imagedefinitions.json
