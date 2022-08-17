@@ -13,7 +13,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - cd pmp
+      - cd pmp-server
       - docker build -t pmp-server .
       - docker tag pmp-server 860061945305.dkr.ecr.ap-south-1.amazonaws.com/komala-pension-management-portal:pmp-server
   post_build:
